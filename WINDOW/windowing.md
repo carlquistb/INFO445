@@ -48,9 +48,37 @@ These could return different results based on the order that the WHERE clause op
 
 ---
 
+# Basic Window Function syntax
+
+## clauses
+
+**OVER** A window function is an operation applied to a set of rows. A *Window* is the set of rows over which to apply the operation. The OVER clause allows you to define your window.
+
+**Functions** Currently, Window functions allow the following types of operations:
+- Aggregate: COUNT, MIN, MAX, SUM, Etc
+- Ranking: RANK, DENSE_RANK, ROW_NUMBER, NTILE
+- Distribution: PERCENT_RANK, CUME_DIST, PERCENTILE_COUNT, PERCENTILE_DISC
+- Offset: LAG, LEAD, FIRST_VALUE, NTH_VALUE
+
+## example:
+
+`SELECT [orderid], [orderdate], [val], RANK() OVER(ORDER BY [val] DESC) as [rank] FROM [tblORDER] ORDER BY [rank]`
+
+In this example, `RANK` is our operation, and our window is defined by `ORDER BY val DESC`. This is the returned result:
+
+| orderid | orderdate | val | rank |
+| - | - | - | - |
+| 242434 | 01012012 | 6525.1 | 1 |
+| 710413 | 24012012 | 6520.8 | 2 |
+| 158621 | 12082013 | 4802.4 | 3 |
+---
 # Simple solutions
 
 ## A replacement for subquery processing
+
+Consider the following query that we wrote as extra credit earlier this quarter:
+
+
 
 ## The islands problem
 
