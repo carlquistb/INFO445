@@ -1,5 +1,9 @@
 # Windowing functions in T-SQL
 
+### references and related materials
+
+- 'Microsoft SQL Server 2012 High performance T-SQL Using Window Functions'. Author: Itzek Ben-Gan. Published: SolidQ. ISBN: 978-0-7356-5836-3
+
 ---
 
 # supporting information
