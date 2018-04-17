@@ -22,9 +22,29 @@ If you have been trained as a procedural programmer, this will not be intuitive 
 
 ## Relational Algebra
 
+Relational Algebra is a mathematical model that describes the relationships between normalized entities. Similar to how PEMDAS allows us to logically evaluate mathematical algebra, **Logical Query Processing** allows us to logically evaluate relational expressions and commands. It follows this order in query processing:
 
+1. FROM
+2. WHERE
+3. GROUP BY
+4. HAVING
+5. SELECT
+  - evaluate
+  - remove duplicates
+6. ORDER BY
+7. OFFSET-FETCH/TOP
 
-##
+It is important to note that in order to conform to set theory, *only SELECT and ORDER BY clauses of a query can contain a window function.* This is because the where clause can have an effect on the windows chosen, and would give rise to ambiguous results based on ordering that is irrelevant to set theory.
+
+For example:
+
+`SELECT Col1 FROM T1 WHERE Col1 > 'B' AND ROW_NUMBER() OVER(ORDER BY Col1) <= 3;``
+
+and
+
+`SELECT Col1 FROM T1 WHERE ROW_NUMBER() OVER(ORDER BY Col1) <= 3 AND Col1 > 'B';`
+
+These could return different results based on the order that the WHERE clause operates, which is ambiguous in set theory.
 
 ---
 
