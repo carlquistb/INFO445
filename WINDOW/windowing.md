@@ -78,7 +78,7 @@ In this example, `RANK` is our operation, and our window is defined by `ORDER BY
 
 Consider the following query that we wrote as extra credit earlier this quarter:
 
-
+` `
 
 ## The islands problem
 
