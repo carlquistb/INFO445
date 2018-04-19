@@ -62,7 +62,7 @@ These could return different results based on the order that the WHERE clause op
 
 ## example:
 
-`SELECT [orderid], [orderdate], [val], RANK() OVER(ORDER BY [val] DESC) as [rank] FROM [tblORDER] ORDER BY [rank]`
+`SELECT [orderid], [orderd date], [val], RANK() OVER(ORDER BY [val] DESC) as [rank] FROM [tblORDER] ORDER BY [rank]`
 
 In this example, `RANK` is our operation, and our window is defined by `ORDER BY val DESC`. This is the returned result:
 
