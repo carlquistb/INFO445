@@ -4,7 +4,7 @@ developed by: Brendan Carlquist
 Spring 2018
 */
 
---use master drop database windowing_lecture
+--use master drop database windowing_lecture_netID
 
 create database windowing_lecture_netID
 go
