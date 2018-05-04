@@ -72,7 +72,9 @@ create table tblORDER_DETAIL
 go
 create proc uspInsertSyntheticOrderDetails
 	
-	@num int = 1
+	@num int = 1,
+	@datetimebacktrack int = 0,
+	@datetimespread int = 7
 as
 	while(@num > 0)
 	begin
@@ -81,7 +83,7 @@ as
 		set @CustomerID = floor(rand()*(select count(*) from tblCUSTOMER)) + 1
 		--fetch random date in the last month.
 		declare @Orderdatetime datetime
-		set @Orderdatetime = getdate()-(rand()*31)
+		set @Orderdatetime = getdate()-(rand()*@datetimespread)-@datetimebacktrack
 		--declare random number of details between 3 and 6.
 		declare @numDetails int
 		set @numDetails = floor(rand()*4)+3
@@ -130,5 +132,11 @@ from tblORDER as O
 		on C.CustomerID = O.CustomerID
 go
 
-exec uspInsertSyntheticOrderDetails @num = 50
+--add middle of the week data that should be noticeable.
+exec uspInsertSyntheticOrderDetails @num = 500, @datetimebacktrack = 0, @datetimespread = 5
+exec uspInsertSyntheticOrderDetails @num = 500, @datetimebacktrack = 7, @datetimespread = 5
+exec uspInsertSyntheticOrderDetails @num = 500, @datetimebacktrack = 14, @datetimespread = 5
+exec uspInsertSyntheticOrderDetails @num = 500, @datetimebacktrack = 21, @datetimespread = 5
+--add general data that should be looked over by windowing functions with weights.
+exec uspInsertSyntheticOrderDetails @num = 200, @datetimebacktrack = 0, @datetimespread = 28
 select * from vDetails
