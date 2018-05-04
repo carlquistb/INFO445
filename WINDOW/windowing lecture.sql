@@ -40,8 +40,9 @@ join (select orderID, sum([detail value]) as [order value] from vDetails group b
 order by [percent of order]
 
 select 
-	vD.orderID,
-	vD.detailID,
+	vD.[customer name],
+	vD.[orderID],
+	vD.[detailID],
 	vD.[product name],
 	sum([detail value]) 
 		over(partition by vD.orderID) as [order value],
